@@ -44,4 +44,25 @@ router.post('/employees', ({ body }, res) => {
     });
 });
 
+// put a new role for the selected employee into their database row
+router.put('/employees', ({ body }, res) => {
+    const sql = 'UPDATE employees SET role_id = ? WHERE id = ?';
+    
+    const params = [
+        body.role_id.charAt(0),
+        body.id.charAt(0)
+    ];
+
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            res.status(400).json({ error : err.message });
+            return;
+        }
+        res.json({
+            message : 'success',
+            data : body
+        });
+    });
+});
+
 module.exports = router;
