@@ -2,7 +2,7 @@ INSERT INTO departments
     (name)
 VALUES
     ('Sales'),
-    ('Customaer Service'),
+    ('Customer Service'),
     ('Engineering'),
     ('Management');
 
