@@ -18,4 +18,30 @@ router.get('/employees', (req, res) => {
     });
 });
 
+// post a new employee to the employees table
+router.post('/employees', ({ body }, res) => {
+    const sql = 'INSERT INTO employees (first_name,last_name,role_id,manager_id) VALUES(?,?,?,?)';
+    let manager_id = body.manager_id.charAt(0);
+    if (manager_id == 0) {
+        manager_id = null;
+    }
+    const params = [
+        body.first_name,
+        body.last_name,
+        body.role_id.charAt(0),
+        manager_id
+    ];
+
+    db.query(sql, params, (err, result) => {
+        if (err) {
+            res.status(400).json({ error : err.message });
+            return;
+        }
+        res.json({
+            message : 'success',
+            data : body
+        });
+    });
+});
+
 module.exports = router;
