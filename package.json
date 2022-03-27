@@ -19,6 +19,8 @@
   "homepage": "https://github.com/jciii91/employee-tracker#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "mysql2": "^2.3.3"
+    "inquirer": "^8.2.2",
+    "mysql2": "^2.3.3",
+    "node-fetch": "^2.6.7"
   }
 }
