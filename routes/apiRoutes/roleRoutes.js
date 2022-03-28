@@ -25,10 +25,12 @@ router.get('/roles', (req, res) => {
 // post a new role to the roles table
 router.post('/roles', ({ body }, res) => {
     const sql = 'INSERT INTO roles (title,salary,department_id) VALUES(?,?,?)';
+    let tempArray = body.department_id.split(':');
+    const department_id = tempArray[0];
     const params = [
         body.title,
         body.salary,
-        body.department_id.charAt(0),
+        department_id,
     ];
 
     db.query(sql, params, (err, result) => {
